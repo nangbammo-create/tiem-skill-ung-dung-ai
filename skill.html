@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chi tiết Skill — Tiệm Skill Ứng Dụng AI</title>
+<link rel="stylesheet" href="styles.css">
+<script src="skills.js"></script>
+<script src="app.js"></script>
+</head>
+<body>
+<header data-header></header>
+<section><div class="wrap">
+  <p><a id="back-link" href="index.html">← Về sàn Skill</a></p>
+  <span class="hall-tag" id="skill-hall"></span>
+  <h2 id="skill-name" style="font-size:32px"></h2>
+  <p class="lead">Một câu lệnh soạn sẵn — dán vào ChatGPT, Claude hoặc Gemini bạn đang có, kèm ảnh của bạn, là ra thứ đăng bán được ngay.</p>
+  <p style="font-size:22px;font-weight:800;color:#0e2a1b" id="skill-price"></p>
+  <div class="pill-row">
+    <button class="btn" id="buy-btn">Mua skill này</button>
+    <a class="btn btn-ghost" style="color:#1b2926;border-color:#cbd8c9" href="tai-khoan.html">Đã mua? Vào Tài khoản</a>
+  </div>
+
+  <div id="skill-content" style="margin-top:28px"></div>
+
+  <div class="faq-item"><b>Cách dùng chung (4 bước)</b>
+    <p>1. Dán câu lệnh vào trợ lý AI bạn đang có.<br>
+       2. Trả lời từng câu hỏi của trợ lý bằng tiếng Việt.<br>
+       3. Đối chiếu kết quả với bản hướng dẫn đi kèm.<br>
+       4. Gặp lỗi thì chép lỗi dán lại, trợ lý đọc và sửa cho bạn.</p></div>
+</div></section>
+<footer data-footer></footer>
+<div id="modal-slot"></div>
+<script>
+const slug = new URLSearchParams(location.search).get("slug") || SKILLS[0].slug;
+const s = skillBySlug(slug) || SKILLS[0];
+document.title = s.name + " — Tiệm Skill Ứng Dụng AI";
+document.getElementById("skill-hall").textContent = "Sảnh " + s.hall + " · " + hallById(s.hall).name;
+document.getElementById("skill-name").textContent = s.name;
+document.getElementById("skill-price").textContent = fmt(PRICE_SINGLE) + " / skill";
+document.getElementById("back-link").href = "sanh.html?hall=" + s.hall;
+document.getElementById("buy-btn").onclick = () => openCheckout(s.name, PRICE_SINGLE);
+document.getElementById("skill-content").innerHTML = s.content
+  ? `<div class="card"><h3>Câu lệnh &amp; hướng dẫn chi tiết</h3><p style="white-space:pre-wrap">${s.content}</p></div>`
+  : `<div class="wait-box"><b>Nội dung câu lệnh đang được cập nhật.</b><br>
+     Khung trang đã sẵn sàng — nội dung câu lệnh và hướng dẫn chi tiết của skill này sẽ được Tiệm đăng lên ngay khi hoàn tất. Bạn cứ mua trước để giữ chỗ, mở khóa xong là đọc được ngay khi nội dung lên sóng.</div>`;
+document.getElementById("modal-slot").innerHTML = checkoutModalHTML();
+</script>
+</body>
+</html>

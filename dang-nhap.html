@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đăng nhập — Tiệm Skill Ứng Dụng AI</title>
+<link rel="stylesheet" href="styles.css">
+<script src="skills.js"></script>
+<script src="app.js"></script>
+</head>
+<body>
+<header data-header></header>
+<section><div class="wrap">
+  <div class="form-box">
+    <h2 style="text-align:center">Tài khoản của tôi</h2>
+    <div class="tabs">
+      <button id="tab-reg" class="active" onclick="setTab('reg')">Đăng ký</button>
+      <button id="tab-login" onclick="setTab('login')">Đăng nhập</button>
+    </div>
+    <p class="note" id="tab-note">Tạo tài khoản bằng email và mật khẩu. Xong là vào được ngay, không cần chờ email xác nhận.</p>
+    <button class="btn" style="width:100%" onclick="alert('Bản khung giao diện: nút Đăng nhập bằng Google sẽ được gắn ở giai đoạn máy chủ thật. Bạn dùng email và mật khẩu bên dưới nhé.')">Tiếp tục với Google</button>
+    <p class="note" style="text-align:center">hoặc dùng email</p>
+    <label>Email</label>
+    <input id="email" type="email" placeholder="ban@example.com">
+    <label>Mật khẩu</label>
+    <input id="pw" type="password" placeholder="Ít nhất 6 ký tự">
+    <div class="pill-row" style="margin-top:18px">
+      <button class="btn" style="flex:1" id="submit-btn" onclick="submitAuth()">Tạo tài khoản</button>
+    </div>
+    <p class="note" id="msg"></p>
+    <p class="note"><a href="#" onclick="alert('Bản khung giao diện: đăng nhập bằng mã qua email sẽ được gắn ở giai đoạn máy chủ thật.');return false;">Quên mật khẩu? Đăng nhập bằng mã qua email</a></p>
+    <p class="note">Tiếp tục nghĩa là bạn đồng ý với Điều khoản và Chính sách bảo mật của Tiệm Skill Ứng Dụng AI.</p>
+  </div>
+</div></section>
+<footer data-footer></footer>
+<script>
+let mode = "reg";
+function setTab(m) {
+  mode = m;
+  document.getElementById("tab-reg").classList.toggle("active", m === "reg");
+  document.getElementById("tab-login").classList.toggle("active", m === "login");
+  document.getElementById("tab-note").textContent = m === "reg"
+    ? "Tạo tài khoản bằng email và mật khẩu. Xong là vào được ngay, không cần chờ email xác nhận."
+    : "Đăng nhập bằng email và mật khẩu bạn đã đăng ký.";
+  document.getElementById("submit-btn").textContent = m === "reg" ? "Tạo tài khoản" : "Đăng nhập";
+}
+function submitAuth() {
+  const email = document.getElementById("email").value.trim();
+  const pw = document.getElementById("pw").value;
+  const msg = document.getElementById("msg");
+  if (!/^\S+@\S+\.\S+$/.test(email)) { msg.innerHTML = '<span class="err">Bạn nhập email chưa đúng định dạng nhé.</span>'; return; }
+  if (pw.length < 6) { msg.innerHTML = '<span class="err">Mật khẩu cần ít nhất 6 ký tự nhé.</span>'; return; }
+  const old = getUser();
+  if (mode === "login" && (!old || old.email !== email)) {
+    msg.innerHTML = '<span class="err">Chưa thấy tài khoản này trên trình duyệt này — bạn chuyển sang tab Đăng ký để tạo tài khoản nhé.</span>'; return;
+  }
+  setUser({ email });
+  msg.innerHTML = '<span class="ok">Xong rồi! Đang đưa bạn vào trang Tài khoản…</span>';
+  setTimeout(() => location.href = "tai-khoan.html", 600);
+}
+</script>
+</body>
+</html>

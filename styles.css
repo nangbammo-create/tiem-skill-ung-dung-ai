@@ -1,0 +1,88 @@
+/* Tiệm Skill Ứng Dụng AI — màu sắc theo trang App VIP Pro:
+   nền xanh lá đậm + vàng cam gradient, chữ sáng trên nền tối, thẻ sáng. */
+:root {
+  --green-950: #07130c; --green-900: #091b11; --green-800: #0e2a1b; --green-700: #1f4d2e;
+  --gold-1: #ffd9a0; --gold-2: #f59e0b; --gold-3: #ea580c; --orange: #f97316;
+  --paper: #f2f7ef; --white: #fffdf9; --ink: #1b2926; --muted: #5b6b64;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Be Vietnam Pro", system-ui, sans-serif; background: var(--paper); color: var(--ink); }
+a { color: inherit; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 18px; }
+
+/* Header */
+header { background: var(--green-950); color: #fff; position: sticky; top: 0; z-index: 20; }
+header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 12px; padding-bottom: 12px; }
+.logo { font-weight: 800; font-size: 20px; text-decoration: none; }
+.logo span { color: var(--gold-1); }
+nav { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+nav a { color: #d8e8dc; text-decoration: none; font-size: 15px; }
+nav a:hover { color: #fff; }
+.btn { display: inline-block; border: 0; cursor: pointer; text-decoration: none; font-weight: 700;
+  background: linear-gradient(90deg, var(--gold-1), var(--gold-2), var(--gold-3)); color: #231303;
+  padding: 11px 22px; border-radius: 999px; font-size: 15px; }
+.btn:hover { filter: brightness(1.06); }
+.btn-ghost { background: transparent; color: #fff; border: 1px solid #6d8a74; }
+.btn-small { padding: 7px 14px; font-size: 14px; }
+
+/* Hero */
+.hero { background: linear-gradient(160deg, var(--green-950), var(--green-800) 60%, var(--green-700)); color: #fff; padding: 54px 0 40px; }
+.hero h1 { font-size: 40px; line-height: 1.15; margin: 0 0 14px; }
+.hero h1 em { font-style: normal; color: var(--gold-1); }
+.hero p { font-size: 17px; line-height: 1.7; color: #d8e8dc; max-width: 720px; }
+.stats { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 26px; color: #fff; }
+.stats b { display: block; font-size: 22px; color: var(--gold-1); }
+.stats span { font-size: 14px; color: #cfe0d3; }
+
+/* Sections */
+section { padding: 40px 0; }
+h2 { font-size: 28px; margin: 0 0 8px; }
+.lead { color: var(--muted); line-height: 1.7; max-width: 760px; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; }
+@media (max-width: 860px) { .grid { grid-template-columns: 1fr 1fr; } .hero h1 { font-size: 30px; } }
+@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+.card { background: var(--white); border: 1px solid #dbe7da; border-radius: 16px; padding: 18px; }
+.card h3 { margin: 0 0 8px; font-size: 18px; }
+.card p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 15px; }
+.card .price { font-size: 22px; font-weight: 800; color: var(--green-800); margin: 10px 0; }
+.card .old { text-decoration: line-through; color: #999; font-size: 15px; font-weight: 400; }
+.hall-tag { display: inline-block; background: var(--green-800); color: #fff; font-size: 13px; padding: 4px 10px; border-radius: 999px; margin-bottom: 10px; }
+.skill-link { display: flex; justify-content: space-between; align-items: center; text-decoration: none; }
+.skill-link:hover h3 { color: var(--gold-3); }
+.locked { color: #999; font-size: 14px; }
+.pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+
+/* Pricing + FAQ */
+.pricing { background: var(--green-950); color: #fff; }
+.pricing .lead { color: #cfe0d3; }
+.pricing .card { background: #122b1c; border-color: #2c4a35; color: #fff; }
+.pricing .card p { color: #cfe0d3; }
+.pricing .card .price { color: var(--gold-1); }
+.faq-item { background: var(--white); border: 1px solid #dbe7da; border-radius: 14px; padding: 16px 18px; margin-top: 12px; }
+.faq-item b { display: block; margin-bottom: 6px; }
+.faq-item p { margin: 0; color: var(--muted); line-height: 1.7; }
+.cta-band { background: linear-gradient(90deg, var(--gold-1), var(--gold-2), var(--gold-3)); color: #231303; border-radius: 20px; padding: 28px; text-align: center; }
+.cta-band h2 { margin-bottom: 10px; }
+.cta-band .btn { background: var(--green-950); color: #fff; }
+
+/* Forms */
+.form-box { background: var(--white); border: 1px solid #dbe7da; border-radius: 16px; padding: 22px; max-width: 520px; margin: 0 auto; }
+.form-box label { display: block; font-weight: 600; margin: 14px 0 6px; }
+.form-box input { width: 100%; padding: 11px 13px; border: 1px solid #cbd8c9; border-radius: 10px; font-size: 15px; }
+.tabs { display: flex; gap: 8px; margin-bottom: 8px; }
+.tabs button { flex: 1; padding: 10px; border-radius: 10px; border: 1px solid #cbd8c9; background: #eef4ec; cursor: pointer; font-weight: 700; }
+.tabs button.active { background: var(--green-800); color: #fff; }
+.note { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.ok { color: #1f7a3a; font-weight: 700; }
+.err { color: #b3261e; font-weight: 700; }
+.wait-box { background: #fff7e6; border: 1px dashed var(--gold-2); border-radius: 14px; padding: 16px; line-height: 1.7; }
+
+/* Modal */
+.modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 50; align-items: center; justify-content: center; padding: 16px; }
+.modal-bg.open { display: flex; }
+.modal { background: var(--white); border-radius: 18px; padding: 24px; max-width: 520px; width: 100%; }
+.modal h3 { margin-top: 0; }
+
+footer { background: var(--green-950); color: #cfe0d3; padding: 30px 0; margin-top: 20px; }
+footer a { color: #fff; }
+.foot-links { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px; }

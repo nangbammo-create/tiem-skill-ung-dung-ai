@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tiệm Skill Ứng Dụng AI — Câu lệnh AI làm ảnh, video bán hàng</title>
+<link rel="stylesheet" href="styles.css">
+<script src="skills.js"></script>
+<script src="app.js"></script>
+</head>
+<body>
+<header data-header></header>
+
+<div class="hero"><div class="wrap">
+  <p style="margin:0 0 10px;color:#ffd9a0;font-weight:700">Sàn giao dịch Skill · 5 Sảnh · 31 Skill · 135.000 ₫ / Skill · Combo 10 Skill 1.039.000 ₫</p>
+  <h1>Thế giới <em>Skill bán hàng</em> chuyên nghiệp.</h1>
+  <p>Mỗi Skill là một <b>câu lệnh soạn sẵn</b> — dán vào ChatGPT hoặc Gemini bạn đang có, kèm ảnh của bạn, là ra thứ đăng bán được ngay. <b>Không cài gì, làm được cả trên điện thoại.</b></p>
+  <div class="pill-row">
+    <a class="btn" href="#sanh">Xem các sảnh Skill</a>
+    <a class="btn btn-ghost" href="tai-khoan.html">Tài khoản của tôi</a>
+  </div>
+  <div class="stats">
+    <div><b>31</b><span>Skill đang mở bán</span></div>
+    <div><b>5</b><span>Sảnh chuyên biệt</span></div>
+    <div><b>135.000 ₫</b><span>Một Skill lẻ</span></div>
+    <div><b>Ngay lập tức</b><span>Nhận hàng sau khi mở khóa</span></div>
+  </div>
+</div></div>
+
+<section id="sanh"><div class="wrap">
+  <h2>Các sảnh Skill</h2>
+  <p class="lead">Chọn sảnh đúng việc bạn đang cần — mỗi sảnh là một nhóm skill làm chung một loại sản phẩm bán hàng.</p>
+  <div class="grid" id="hall-grid"></div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Vì sao chọn Tiệm Skill Ứng Dụng AI?</h2>
+  <div class="grid">
+    <div class="card"><h3>🛍️ Dùng cho công việc</h3><p>Sản phẩm bạn làm ra thuộc về bạn — dùng cho ads và affiliate thoải mái.</p></div>
+    <div class="card"><h3>⚡ Nhận hàng ngay</h3><p>Nhập mã truy cập là mở khóa skill ngay — không chờ xét duyệt.</p></div>
+    <div class="card"><h3>💬 Hỗ trợ qua Zalo</h3><p>Gặp lỗi thì chép lỗi gửi qua Zalo, Tiệm đọc và hướng dẫn bạn sửa từng bước.</p></div>
+  </div>
+</div></section>
+
+<section class="pricing"><div class="wrap">
+  <h2>Gói lớn nhất · Tiết kiệm nhiều nhất</h2>
+  <p class="lead">Mua lẻ từng skill, mua combo 10 skill, hoặc lấy trọn bộ để khỏi chọn tới chọn lui.</p>
+  <div class="grid">
+    <div class="card"><h3>Skill lẻ</h3><div class="price">135.000 ₫ <span class="old"></span></div><p>1 skill tự chọn, dùng trọn đời cho công việc của bạn.</p>
+      <div class="pill-row"><button class="btn btn-small" onclick="openCheckout('Skill lẻ', PRICE_SINGLE)">Mua skill lẻ</button></div></div>
+    <div class="card"><h3>Combo 10 Skill</h3><div class="price">1.039.000 ₫</div><p>Chỉ còn 103.900 ₫ mỗi skill — chọn 10 skill bất kỳ trong tiệm.</p>
+      <div class="pill-row"><button class="btn btn-small" onclick="openCheckout('Combo 10 Skill', PRICE_COMBO10)">Mua combo 10</button></div></div>
+    <div class="card"><h3>Trọn bộ 31 Skill</h3><div class="price">3.868.000 ₫</div><p>✓ Toàn bộ 31 skill trong tiệm, gồm cả skill ra mắt sau này<br>✓ Được hỗ trợ qua nhóm Zalo riêng</p>
+      <div class="pill-row"><button class="btn btn-small" onclick="openCheckout('Trọn bộ 31 Skill', PRICE_BUNDLE)">Lấy trọn bộ</button></div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Câu hỏi thường gặp</h2>
+  <div class="faq-item"><b>Tôi không biết gì về code, dùng được không?</b>
+    <p>Được — đó chính là lý do tiệm này tồn tại. Bạn chỉ cần dán câu lệnh vào ChatGPT, Claude hoặc Gemini, trợ lý sẽ hỏi từng bước bằng tiếng Việt và dắt bạn làm. Gặp lỗi thì chép lỗi gửi lại, trợ lý đọc và sửa cho.</p></div>
+  <div class="faq-item"><b>Mua một Skill thì được những gì?</b>
+    <p>Chính là một câu lệnh soạn sẵn để dán vào trợ lý AI, kèm bản hướng dẫn từng bước để đối chiếu và phần xử lý lỗi hay gặp. Mua skill nào cũng được mời vào nhóm Zalo chung của Tiệm.</p></div>
+  <div class="faq-item"><b>Mua xong bao lâu thì nhận được hàng?</b>
+    <p>Ngay lập tức. Chuyển khoản xong, bạn đăng nhập vào trang Tài khoản, nhập mã truy cập là thấy mọi skill đã mở; bấm vào skill nào thì đọc được hướng dẫn của skill đó.</p></div>
+  <div class="faq-item"><b>Không hài lòng thì có được trả lại tiền không?</b>
+    <p>Có. Chưa nhận mã truy cập thì hoàn 100%, không hỏi lý do. Đã nhận mà sản phẩm không chạy được và Tiệm không khắc phục được thì cũng hoàn 100% trong 7 ngày.</p></div>
+</div></section>
+
+<section><div class="wrap"><div class="cta-band">
+  <h2>Nâng cấp Skill bán hàng của bạn hôm nay</h2>
+  <p style="margin:0 0 18px">135.000 ₫ một Skill. Mua combo 10 Skill còn 103.900 ₫ mỗi Skill.</p>
+  <a class="btn" href="#sanh">Chọn Skill ngay</a>
+</div></div></section>
+
+<footer data-footer></footer>
+<div id="modal-slot"></div>
+<script>
+document.getElementById("hall-grid").innerHTML = HALLS.map(h => {
+  const items = SKILLS.filter(s => s.hall === h.id);
+  return `<div class="card"><span class="hall-tag">Sảnh ${h.id}</span><h3>${h.name}</h3>
+    <p>${h.desc}</p><p style="margin-top:10px">${items.length} skill · từ ${fmt(PRICE_SINGLE)}/skill</p>
+    <div class="pill-row"><a class="btn btn-small" href="sanh.html?hall=${h.id}">Vào sảnh →</a></div></div>`;
+}).join("");
+document.getElementById("modal-slot").innerHTML = checkoutModalHTML();
+</script>
+</body>
+</html>

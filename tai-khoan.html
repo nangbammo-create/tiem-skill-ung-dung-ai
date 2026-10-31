@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tài khoản của tôi — Tiệm Skill Ứng Dụng AI</title>
+<link rel="stylesheet" href="styles.css">
+<script src="skills.js"></script>
+<script src="app.js"></script>
+</head>
+<body>
+<header data-header></header>
+<section><div class="wrap">
+  <div id="need-login" class="wait-box" style="display:none">
+    <b>Bạn chưa đăng nhập.</b><br>
+    Đăng nhập để xem trang Tài khoản và các skill bạn đã mở.
+    <div class="pill-row"><a class="btn btn-small" href="dang-nhap.html">Đăng nhập / Đăng ký</a></div>
+  </div>
+
+  <div id="account" style="display:none">
+    <h2>Tài khoản của tôi</h2>
+    <p class="note" id="who"></p>
+
+    <div class="card" style="margin-top:16px">
+      <h3>Có mã truy cập?</h3>
+      <p class="note">Nhập mã để mở toàn bộ Skill đã ra mắt. Không phân biệt chữ hoa chữ thường.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <input id="code" placeholder="Mã truy cập" style="flex:1;padding:11px 13px;border:1px solid #cbd8c9;border-radius:10px">
+        <button class="btn" onclick="unlock()">Mở khoá</button>
+      </div>
+      <p class="note" id="code-msg"></p>
+      <p class="note">Bản khung demo: mã mở khóa dùng thử là <b>TIEMSKILL</b> — Tiệm sẽ đổi mã chính thức khi lên bản máy chủ.</p>
+    </div>
+
+    <h2 style="margin-top:32px">Skill của bạn</h2>
+    <p class="lead" id="skill-status"></p>
+    <div class="grid" id="my-skills"></div>
+
+    <div class="card" style="margin-top:32px">
+      <h3>Kết nối AI của bạn</h3>
+      <p class="note">Kết nối một lần, AI của bạn tự dùng và tự cài mọi Skill bạn đã mua — kể cả Skill mua sau này. Không cần tải file hay dán link từng Skill nữa.</p>
+      <div class="tabs">
+        <button class="active" onclick="setAiTab('claude',this)">Claude</button>
+        <button onclick="setAiTab('chatgpt',this)">ChatGPT</button>
+        <button onclick="setAiTab('claudecode',this)">Claude Code</button>
+        <button onclick="setAiTab('codex',this)">Codex</button>
+      </div>
+      <div id="ai-steps"></div>
+      <div class="pill-row">
+        <button class="btn btn-small" onclick="copyMcp()">Chép địa chỉ kết nối</button>
+        <button class="btn btn-small btn-ghost" style="color:#1b2926;border-color:#cbd8c9" onclick="alert('Bản khung giao diện: nút này sẽ gỡ quyền của mọi AI đã kết nối ở bản máy chủ thật.')">Ngắt mọi kết nối AI</button>
+      </div>
+      <p class="note">Lưu ý: lệnh ở tab Claude Code / Codex chứa mã riêng của tài khoản, không gửi cho người khác.</p>
+    </div>
+    <p style="margin-top:20px"><a href="index.html">← Về sàn Skill</a></p>
+  </div>
+</div></section>
+<footer data-footer></footer>
+<script>
+function unlock() {
+  const v = document.getElementById("code").value.trim().toUpperCase();
+  const msg = document.getElementById("code-msg");
+  if (v === BRAND.demoUnlockCode) {
+    localStorage.setItem(LS_UNLOCKED, "1");
+    msg.innerHTML = '<span class="ok">Mở khóa thành công! Toàn bộ 31 skill đã mở.</span>';
+    renderMine();
+  } else {
+    msg.innerHTML = '<span class="err">Mã chưa đúng, bạn kiểm tra lại giúp Tiệm nhé.</span>';
+  }
+}
+function renderMine() {
+  const open = isUnlocked();
+  document.getElementById("skill-status").textContent =
+    open ? "Đang mở 31 Skill" : "Bạn chưa mở khóa skill nào — nhập mã truy cập ở trên để mở.";
+  document.getElementById("my-skills").innerHTML = SKILLS.map(s =>
+    `<div class="card"><a class="skill-link" href="skill.html?slug=${s.slug}"><h3>${s.name}</h3>
+     <span>${open ? "Mở →" : "🔒"}</span></a><p>Sảnh ${s.hall} · ${hallById(s.hall).name}</p></div>`).join("");
+  document.getElementById("code-msg").innerHTML = open
+    ? '<span class="ok">Bạn đã dùng mã này rồi.</span>' : "";
+}
+function copyMcp() {
+  navigator.clipboard ? navigator.clipboard.writeText(BRAND.mcpUrl) : null;
+  alert("Đã chép địa chỉ kết nối: " + BRAND.mcpUrl);
+}
+function setAiTab(tab, btn) {
+  btn.parentNode.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  const steps = {
+    claude: `<p>1. Mở claude.ai → Cài đặt (Settings) → Trình kết nối (Connectors) → Thêm trình kết nối tuỳ chỉnh.<br>
+      2. Đặt tên “Tiệm Skill”, dán địa chỉ <b>${BRAND.mcpUrl}</b>.<br>
+      3. Bấm “Kết nối (Connect)” → đăng nhập tài khoản Tiệm Skill → bấm “Cho phép”.<br>
+      4. Xong. Từ giờ cứ nhờ Claude làm việc, nó tự mở Skill phù hợp.</p>`,
+    chatgpt: `<p>1. Mở ChatGPT → Cài đặt → Trình kết nối → Thêm trình kết nối tuỳ chỉnh.<br>
+      2. Dán địa chỉ <b>${BRAND.mcpUrl}</b>, đăng nhập tài khoản Tiệm Skill rồi bấm “Cho phép”.<br>
+      3. Xong. Từ giờ cứ nhờ ChatGPT làm việc, nó tự mở Skill phù hợp.</p>`,
+    claudecode: `<p>Bản khung giao diện: lệnh kết nối Claude Code chứa mã riêng của tài khoản, sẽ hiển thị sau khi đăng nhập ở bản máy chủ thật. Đừng gửi mã này cho người khác.</p>`,
+    codex: `<p>Bản khung giao diện: lệnh kết nối Codex chứa mã riêng của tài khoản, sẽ hiển thị sau khi đăng nhập ở bản máy chủ thật. Đừng gửi mã này cho người khác.</p>`
+  };
+  document.getElementById("ai-steps").innerHTML = steps[tab];
+}
+const u = getUser();
+if (!u) { document.getElementById("need-login").style.display = "block"; }
+else {
+  document.getElementById("account").style.display = "block";
+  document.getElementById("who").textContent = "Đang đăng nhập bằng " + u.email;
+  renderMine();
+  setAiTab("claude", document.querySelector(".tabs button"));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sảnh Skill — Tiệm Skill Ứng Dụng AI</title>
+<link rel="stylesheet" href="styles.css">
+<script src="skills.js"></script>
+<script src="app.js"></script>
+</head>
+<body>
+<header data-header></header>
+<section><div class="wrap">
+  <p><a href="index.html">← Về sàn Skill</a></p>
+  <h2 id="hall-title"></h2>
+  <p class="lead" id="hall-desc"></p>
+  <div class="grid" id="skill-grid"></div>
+</div></section>
+<footer data-footer></footer>
+<div id="modal-slot"></div>
+<script>
+const hallId = new URLSearchParams(location.search).get("hall") || "I";
+const hall = hallById(hallId) || HALLS[0];
+document.title = "Sảnh " + hall.id + " · " + hall.name + " — Tiệm Skill Ứng Dụng AI";
+document.getElementById("hall-title").textContent = "Sảnh " + hall.id + " · " + hall.name;
+document.getElementById("hall-desc").textContent = hall.desc;
+document.getElementById("skill-grid").innerHTML =
+  SKILLS.filter(s => s.hall === hall.id).map(skillCard).join("");
+document.getElementById("modal-slot").innerHTML = checkoutModalHTML();
+</script>
+</body>
+</html>
